@@ -1,0 +1,253 @@
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/Outfit.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/assets/fonts/Sora.woff2") format("woff2");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --background: 0.08 0.015 240;
+    --foreground: 0.93 0.01 220;
+    --card: 0.11 0.02 240;
+    --card-foreground: 0.93 0.01 220;
+    --popover: 0.1 0.02 240;
+    --popover-foreground: 0.93 0.01 220;
+    --primary: 0.78 0.17 195;
+    --primary-foreground: 0.08 0.015 240;
+    --secondary: 0.14 0.025 240;
+    --secondary-foreground: 0.78 0.17 195;
+    --muted: 0.14 0.02 240;
+    --muted-foreground: 0.58 0.05 220;
+    --accent: 0.85 0.2 195;
+    --accent-foreground: 0.08 0.015 240;
+    --destructive: 0.62 0.22 27;
+    --destructive-foreground: 0.98 0.01 0;
+    --border: 0.18 0.04 240;
+    --input: 0.16 0.03 240;
+    --ring: 0.78 0.17 195;
+    --radius: 0.75rem;
+    --chart-1: 0.78 0.17 195;
+    --chart-2: 0.75 0.18 150;
+    --chart-3: 0.78 0.15 70;
+    --chart-4: 0.7 0.2 280;
+    --chart-5: 0.65 0.22 15;
+    --sidebar: 0.09 0.018 240;
+    --sidebar-foreground: 0.93 0.01 220;
+    --sidebar-primary: 0.78 0.17 195;
+    --sidebar-primary-foreground: 0.08 0.015 240;
+    --sidebar-accent: 0.14 0.025 240;
+    --sidebar-accent-foreground: 0.78 0.17 195;
+    --sidebar-border: 0.16 0.03 240;
+    --sidebar-ring: 0.78 0.17 195;
+
+    /* Nova-specific tokens */
+    --nova-cyan: 0.82 0.2 195;
+    --nova-cyan-dim: 0.55 0.12 195;
+    --nova-amber: 0.78 0.16 70;
+    --nova-green: 0.75 0.18 150;
+    --nova-red: 0.65 0.22 27;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Outfit", sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  #root {
+    height: 100%;
+  }
+}
+
+/* Nova Orb Animations */
+@keyframes orb-idle-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-ring-expand {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes orb-ring-expand-2 {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes orb-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orb-wave {
+  0%,
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+  25% {
+    transform: scaleY(1.08) scaleX(0.96);
+  }
+  75% {
+    transform: scaleY(0.94) scaleX(1.04);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(var(--nova-cyan) / 0.3), 0 0 40px
+      oklch(var(--nova-cyan) / 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px oklch(var(--nova-cyan) / 0.5), 0 0 60px
+      oklch(var(--nova-cyan) / 0.25);
+  }
+}
+
+@keyframes mic-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(var(--nova-red) / 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 16px oklch(var(--nova-red) / 0);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--nova-cyan-dim) / 0.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--nova-cyan) / 0.6);
+}
+
+.nova-glow-text {
+  text-shadow: 0 0 20px oklch(var(--nova-cyan) / 0.8), 0 0 40px
+    oklch(var(--nova-cyan) / 0.4);
+}
+
+.nova-card {
+  background: oklch(var(--card));
+  border: 1px solid oklch(var(--border));
+  backdrop-filter: blur(12px);
+}
+
+.nova-input {
+  background: oklch(var(--input));
+  border: 1px solid oklch(var(--border));
+  color: oklch(var(--foreground));
+  font-family: "Outfit", sans-serif;
+}
+
+.nova-input:focus {
+  outline: none;
+  border-color: oklch(var(--nova-cyan) / 0.6);
+  box-shadow: 0 0 0 2px oklch(var(--nova-cyan) / 0.15);
+}
+
+.grid-bg {
+  background-image: linear-gradient(
+      oklch(var(--nova-cyan) / 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, oklch(var(--nova-cyan) / 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
